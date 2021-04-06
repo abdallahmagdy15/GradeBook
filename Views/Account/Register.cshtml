@@ -1,0 +1,92 @@
+﻿@model RegisterViewModel
+@{
+    Layout = "LoginRegisterLayout.cshtml";
+    ViewBag.Title = "Sign Up";
+}
+
+@using (Html.BeginForm((string)ViewBag.action, "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+{
+    @Html.AntiForgeryToken()
+    <span class="login100-form-title p-b-59">
+        Sign Up
+    </span>
+    if (ViewBag.Success != null)
+    {
+        <span class="alert alert-success">@ViewBag.Success</span>
+    }
+    if (!ViewData.ModelState.IsValid)
+    {
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    }
+    <div class="wrap-input100 validate-input">
+        @Html.LabelFor(a => a.FullName, new { @class = "label-input100" })
+        @Html.TextBoxFor(a => a.FullName, new { @class = "input100", @placeholder = "Name..." })
+        <span class="focus-input100"></span>
+    </div>
+    @Html.ValidationMessageFor(a => a.FullName)
+
+    <div class="wrap-input100 validate-input">
+        @Html.LabelFor(a => a.UserName, new { @class = "label-input100" })
+        @Html.TextBoxFor(a => a.UserName, new { @class = "input100", @placeholder = "Username..." })
+        <span class="focus-input100"></span>
+    </div>
+    @Html.ValidationMessageFor(a => a.UserName)
+
+    <div class="wrap-input100 validate-input">
+        @Html.LabelFor(a => a.Email, new { @class = "label-input100" })
+        @Html.TextBoxFor(a => a.Email, new { @class = "input100", @placeholder = "Email..." })
+        <span class="focus-input100"></span>
+    </div>
+    @Html.ValidationMessageFor(a => a.Email)
+
+    <div class="wrap-input100 validate-input">
+        @Html.LabelFor(a => a.Age, new { @class = "label-input100", value = "22" })
+        <input name="Age" type="number" placeholder="Age..." />
+        <span class="focus-input100"></span>
+    </div>
+    @Html.ValidationMessageFor(a => a.Age)
+
+    <div class="wrap-input100 validate-input">
+        @Html.LabelFor(a => a.Password, new { @class = "label-input100" })
+        @Html.TextBoxFor(a => a.Password, new { @type = "password", @placeholder = "Password..." , value="123#Aa" })
+        <span class="focus-input100"></span>
+    </div>
+    @Html.ValidationMessageFor(a => a.Password)
+
+    <div class="wrap-input100 validate-input">
+        @Html.LabelFor(a => a.ConfirmPassword, new { @class = "label-input100" })
+        @Html.TextBoxFor(a => a.ConfirmPassword, new { @type = "password", @placeholder = "Confirm Password...", value = "123#Aa" })
+        <span class="focus-input100"></span>
+    </div>
+    @Html.ValidationMessageFor(a => a.ConfirmPassword)
+
+    <div class="container-login100-form-btn">
+        <div class="wrap-login100-form-btn">
+            <div class="login100-form-bgbtn"></div>
+            <button class="login100-form-btn" type="submit">Sign Up</button>
+        </div>
+        <a href='@Url.Action("Login", "Account")' class="dis-block txt3 hov1 p-r-30 p-t-10 p-b-10 p-l-30">
+            Sign In
+            <i class="fa fa-long-arrow-right m-l-5"></i>
+        </a>
+    </div>
+}
+
+@section scripts{
+    <!--===============================================================================================-->
+    <script src="~/UILibs/vendor/animsition/js/animsition.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="~/UILibs/vendor/select2/select2.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="~/UILibs/vendor/daterangepicker/moment.min.js"></script>
+    <script src="~/UILibs/vendor/daterangepicker/daterangepicker.js"></script>
+    <!--===============================================================================================-->
+    <script src="~/UILibs/vendor/countdowntime/countdowntime.js"></script>
+    <!--===============================================================================================-->
+    <script src="~/UILibs/js/main.js"></script>
+}

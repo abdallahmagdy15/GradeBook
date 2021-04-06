@@ -1,0 +1,73 @@
+﻿<!DOCTYPE html>
+<html>
+<title>@ViewBag.Title</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!--===============================================================================================-->
+<link rel="icon" type="image/png" href="~/UILibs/images/icons/favicon.ico" />
+<!--===============================================================================================-->
+<link rel="stylesheet" type="text/css" href="~/UILibs/vendor/bootstrap/css/bootstrap.min.css">
+<!--===============================================================================================-->
+<link rel="stylesheet" type="text/css" href="~/UILibs/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+<!--===============================================================================================-->
+<link rel="stylesheet" type="text/css" href="~/UILibs/fonts/Linearicons-Free-v1.0.0/icon-font.min.css">
+<!--===============================================================================================-->
+<link rel="stylesheet" type="text/css" href="~/UILibs/fonts/iconic/css/material-design-iconic-font.min.css">
+<!--===============================================================================================-->
+<link rel="stylesheet" type="text/css" href="~/UILibs/vendor/animate/animate.css">
+<!--===============================================================================================-->
+<link rel="stylesheet" type="text/css" href="~/UILibs/vendor/css-hamburgers/hamburgers.min.css">
+<!--===============================================================================================-->
+<link rel="stylesheet" type="text/css" href="~/UILibs/vendor/animsition/css/animsition.min.css">
+<!--===============================================================================================-->
+<link rel="stylesheet" type="text/css" href="~/UILibs/vendor/select2/select2.min.css">
+<!--===============================================================================================-->
+<link rel="stylesheet" type="text/css" href="~/UILibs/vendor/daterangepicker/daterangepicker.css">
+<!--===============================================================================================-->
+<link rel="stylesheet" type="text/css" href="~/UILibs/css/util.css">
+<link rel="stylesheet" type="text/css" href="~/UILibs/css/main.css">
+<!--===============================================================================================-->
+<link href="~/Content/LoginRegister.css" rel="stylesheet" />
+
+<body style="background-color: #999999;">
+
+    <div class="limiter">
+        <div class="container-login100">
+            <div class="login100-more" style="background-image: url('../UILibs/images/spectrum-motion.gif')">
+                <a id="bg-music-button" data-play-state="false">
+                    <img id="play-img" style="width:inherit" src="~/UILibs/images/icons/play.png" />
+                    <img style="display:none;width:inherit" id="pause-img" src="~/UILibs/images/icons/pause.png" />
+                </a>
+            </div>
+            <div class="wrap-login100 p-l-50 p-r-50 p-t-72 p-b-50">
+                @RenderBody()
+            </div>
+        </div>
+        <audio id="bg-music" hidden loop>
+            <source src="~/Media/valorant-loading.mp3" type="audio/mpeg">
+        </audio>
+    </div>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+    @RenderSection("scripts", required: false)
+    <script type="text/javascript">
+        $('#bg-music-button').click(function(){
+            var music = document.getElementById("bg-music");
+            if(!music.paused){
+                //pause
+                music.pause();
+                $('#play-img').show();
+                $('#pause-img').hide();
+            }
+            else {
+                //play
+                music.play();
+                $('#play-img').hide();
+                $('#pause-img').show();
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,31 @@
+﻿@model IEnumerable<Instructor>
+
+@foreach (var st in Model)
+{
+    <tr>
+        <td>@st.Id</td>
+        <td>@st.FullName</td>
+        <td>@st.UserName</td>
+        <td>@st.Email</td>
+        <td>@st.Age</td>
+        <td>@st.Gender</td>
+        <td>@(st.Dept==null? "":st.Dept.Name)</td>
+        <td>
+            <span class="btn btn-primary">
+                <i class="fas fa-edit"></i>&nbsp;&nbsp;
+                @Ajax.ActionLink("Edit", "Edit", "Admin_ManageInstructor", new { id = st.Id }, new AjaxOptions() { UpdateTargetId = "modal-body", InsertionMode = InsertionMode.Replace, OnComplete = "$('#mymodal').modal('show')" }, new { @class = "btn-link" })
+            </span>
+            <span class="btn btn-danger">
+                <i class="fas fa-trash-alt"></i>&nbsp;&nbsp;
+                @Ajax.ActionLink("Delete", "Delete", new { id = st.Id }
+           , new AjaxOptions() {
+               Confirm="Are You Sure ?",
+               UpdateTargetId = "modal-body", InsertionMode = InsertionMode.Replace, OnComplete = "$('#mymodal').modal('show')" }, new { @class = "btn-link" })
+            </span>
+            <span class="btn btn-info">
+                <i class="fas fa-info-circle"></i>&nbsp;&nbsp;
+                @Ajax.ActionLink("Details", "Details", "Admin_ManageInstructor", new { id = st.Id }, new AjaxOptions() { UpdateTargetId = "modal-body", InsertionMode = InsertionMode.Replace, OnComplete = "$('#mymodal').modal('show')" }, new { @class = "btn-link" })
+            </span>
+        </td>
+    </tr>
+}

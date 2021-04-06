@@ -1,0 +1,41 @@
+﻿@model Student
+@{
+    string action = ViewBag.ActionName;
+}
+@using (Ajax.BeginForm(action, new AjaxOptions { UpdateTargetId = "modal-body" }))
+{
+
+    @Html.LabelFor(a => a.FullName)
+    @Html.TextBoxFor(a => a.FullName, new { @class = "form-control" })
+    @Html.ValidationMessageFor(a => a.FullName)
+    <br />
+    @Html.LabelFor(a => a.UserName)
+    @Html.TextBoxFor(a => a.UserName, new { @class = "form-control" })
+    @Html.ValidationMessageFor(a => a.UserName)
+    <br />
+    @Html.LabelFor(a => a.Email)
+    @Html.TextBoxFor(a => a.Email, new { @class = "form-control" })
+    @Html.ValidationMessageFor(a => a.Email)
+    <br />
+    @Html.LabelFor(a => a.Gender)
+    @Html.EnumDropDownListFor(a => a.Gender, new { @class = "form-control" })
+    @Html.ValidationMessageFor(a => a.Gender)
+    <br />
+    @Html.LabelFor(a => a.Age)
+    @Html.TextBoxFor(a => a.Age, new { @class = "form-control" })
+    @Html.ValidationMessageFor(a => a.Age)
+    <br />
+    @Html.LabelFor(a => a.Dept)
+    @Html.DropDownListFor(a => a.DeptId, null, new { @class = "form-control" })
+    @Html.ValidationMessageFor(a => a.Dept)
+    
+    @*@Html.LabelFor(a => a.Password)
+    @Html.TextBoxFor(a => a.Password, new { @class = "form-control", @type = "password" })
+    @Html.ValidationMessageFor(a => a.Password)*@
+    @*<br />
+    @Html.LabelFor(a => a.ConfirmPassword)
+    @Html.TextBoxFor(a => a.ConfirmPassword, new { @class = "form-control", @type = "password" })
+    @Html.ValidationMessageFor(a => a.ConfirmPassword)*@
+    <br />
+    <input type="submit" value="@((action == "Add")?"Add":"Edit") Student" class="btn btn-success" />
+}

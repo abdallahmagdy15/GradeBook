@@ -1,0 +1,18 @@
+﻿@model Course
+<div class="card">
+    @Html.LabelFor(a => a.Id)
+    <span> : </span>
+    @Html.DisplayFor(a => a.Id)
+    <br />
+    @Html.LabelFor(a => a.Name)
+    <span> : </span>
+    @Html.DisplayFor(a => a.Name)
+    <br />
+    <label>Departments</label>
+    <ul class="list-group">
+        @foreach (var dept in Model.Departments)
+        {
+            <li class="list-group-item">@dept.Name</li>
+        }
+    </ul>
+</div>

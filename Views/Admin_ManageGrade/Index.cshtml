@@ -1,0 +1,52 @@
+﻿@model StudCrsGrade
+@{
+    ViewBag.Title = "Manage Student Grades";
+    List<Department> Depts = ViewBag.Depts;
+}
+
+<h2>Manage Student Grades</h2>
+@Html.Label("Select Department")
+@using (Ajax.BeginForm("GetStudentsGrades", new AjaxOptions
+{
+    UpdateTargetId = "StdGrades"
+}))
+{
+    <table class="table">
+        <tr>
+            <td>
+
+                @Html.DropDownList("DeptId", new SelectList(Depts, "Id", "Name"), new { @class = "form-control" })
+            </td>
+            <td>
+                <input type="submit" value="Show Students" class="btn btn-info" />
+            </td>
+        </tr>
+    </table>
+}
+
+<div id="StdGrades">
+
+</div>
+@section scripts{
+
+<script type="text/javascript">
+    $(function () {
+    $(document).on("change", "select.select-crs", function(){
+        var selectedCrs = $(this).val();
+        $.ajax({
+            type: "GET",
+            url: "@(Url.Action("GetStudentCrsGrade"))",
+            data: { "selectedCrs": selectedCrs,"StdId": $(this).attr('stdid') },
+            dataType: "json",
+            success: function (data) {
+                //var json = $.parseJSON(data);
+                $('input#'+data.StdId ).val(data.Grade);
+            },
+            error: function (err) {
+                console.log('error in GetStudentCrsGrade');
+            }
+        });
+    });
+});
+</script>
+}

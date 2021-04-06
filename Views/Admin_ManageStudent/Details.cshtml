@@ -1,0 +1,51 @@
+﻿@model Student
+<div class="card">
+    @Html.LabelFor(a => a.Id)
+    <span> : </span>
+    @Html.DisplayNameFor(a => a.Id)
+    <br />
+    @Html.LabelFor(a => a.FullName)
+    <span> : </span>
+
+    @Html.DisplayFor(a => a.FullName)
+    <br />
+    @Html.LabelFor(a => a.UserName)
+    <span> : </span>
+    @Html.DisplayFor(a => a.UserName)
+    <br />
+    @Html.LabelFor(a => a.Email)
+    <span> : </span>
+
+    @Html.DisplayFor(a => a.Email)
+    <br />
+    @Html.LabelFor(a => a.Age)
+    <span> : </span>
+    @Html.DisplayFor(a => a.Age)
+    <br />
+    @Html.LabelFor(a => a.Gender)
+    <span> : </span>
+    @Html.DisplayFor(a => a.Gender)
+    <br />
+    @Html.LabelFor(a => a.Dept)
+    <span> : </span>
+    @Html.DisplayFor(a => a.Dept.Name)
+    <br />
+    <label>Courses and Grades</label>
+    <table class="table table-bordered">
+        <thead>
+            <th>Course Name</th>
+            <th>Grade</th>
+        </thead>
+        <tbody>
+            @foreach (var crs in Model.Courses)
+            {
+                <tr>
+                    <td>@crs.Course.Name</td>
+                    <td>@crs.Grade</td>
+                </tr>
+            }
+
+        </tbody>
+    </table>
+
+</div>

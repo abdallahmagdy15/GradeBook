@@ -1,0 +1,24 @@
+﻿@{
+    ViewBag.Title = "Courses";
+}
+<h2>Manage Courses</h2>
+<table class="table table-bordered">
+    <thead>
+        <th>
+            Id
+        </th>
+        <th>
+            Name
+        </th>
+        <th>
+            <span class="btn btn-success">
+                <i class="fas fa-plus-square"></i>&nbsp;&nbsp;
+                @Ajax.ActionLink("Add Course", "Add", "Admin_ManageCourse", null, new AjaxOptions()  { UpdateTargetId = "modal-body", InsertionMode = InsertionMode.Replace,     OnComplete = "$('#mymodal').modal('show')" }, new { @class = "btn-link" })
+            </span>
+        </th>
+    </thead>
+    <tbody>
+        @{Html.RenderAction("List");}
+    </tbody>
+
+</table>

@@ -1,0 +1,36 @@
+﻿
+span.field-validation-error {
+    padding: 3px 8px;
+    border: 2px solid #dc2c2c;
+    border-radius: 3px;
+    color: #dc2c2c;
+    position: relative;
+    top: -35px;
+}
+
+.alert-success {
+    top: -30px;
+    position: relative;
+    font-size: larger;
+}
+
+a#bg-music-button {
+    width: 140px;
+    margin: 0 auto;
+    display: block;
+    top: 340px;
+    position: relative;
+    box-shadow: 10px 16px 20px #0000002e;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.alert-dismissible .close {
+    top: -2.2rem;
+}
+span, label {
+    -webkit-user-select: none; /* Safari */
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* IE10+/Edge */
+    user-select: none; /* Standard */
+}

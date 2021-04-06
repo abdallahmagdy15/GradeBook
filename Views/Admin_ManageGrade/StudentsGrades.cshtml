@@ -1,0 +1,56 @@
+﻿@model IEnumerable<Student>
+@{
+    List<Course> Courses = ViewBag.Crs;
+}
+<style>
+    .row{
+        margin:1.5rem 0;
+    }
+    .th-bold{
+        font-weight:bold;
+
+    }
+</style>
+<div class="alert alert-warning alert-dismissible fade show" role="alert" style="display:none">
+    <label id="updatingSuccess"></label>
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+
+<div class="row">
+    <div class="col-md-1 th-bold">Std Id</div>
+    <div class="col-md-3 th-bold">Student Name</div>
+    <div class="col-md-4 th-bold">Courses</div>
+    <div class="col-md-2 th-bold">Grade</div>
+    <div class="col-md-2 th-bold">Operations</div>
+</div>
+@foreach (var st in Model)
+{
+    using (Ajax.BeginForm("UpdateStudGrade", "Admin_ManageGrade", new
+    {
+        StdId = st.Id,
+    }, new AjaxOptions() { UpdateTargetId = "updatingSuccess", InsertionMode = InsertionMode.Replace, OnComplete = "$('#updatingSuccess').attr('style','display:block')" }))
+    {
+        <div class="row">
+
+            <div class="col-md-1">
+                @st.Id
+            </div>
+            <div class="col-md-3">
+                @st.FullName
+            </div>
+            <div class="col-md-4">
+                @Html.DropDownList("CrsId", new SelectList(Courses
+                        , "Id", "Name"), new { @class = "form-control select-crs", stdid = st.Id })
+            </div>
+            <div class="col-md-2">
+                <input type="number" min="0" max="100" id="@st.Id" name="Grade" 
+                       value='@(st.Courses.Count() > 0 ? st.Courses.FirstOrDefault().Grade : "")' class="form-control" />
+            </div>
+            <div class="col-md-2">
+                <input type="submit" value="Update Grade" class="btn btn-success" />
+            </div>
+        </div>
+    }
+}

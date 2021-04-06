@@ -1,0 +1,34 @@
+﻿@model Course
+@{
+    string action = ViewBag.ActionName;
+    List<Department> Departments = ViewBag.Depts;
+}
+@using (Ajax.BeginForm(action, new AjaxOptions { UpdateTargetId = "modal-body" }))
+{
+
+    @Html.LabelFor(a => a.Name)
+    @Html.TextBoxFor(a => a.Name, new { @class = "form-control" })
+    @Html.ValidationMessageFor(a => a.Name)
+    <br />
+    <label >Select Departments</label>
+    foreach (var dept in Departments)
+    {
+        <div class="form-check">
+            @if (Model.Departments != null)
+            {
+                <input class="form-check-input" name="deptsList" type="checkbox" value="@dept.Id"
+                       @((Model.Departments.Contains(dept)) ? "checked" : "")>
+            }
+            else
+            {
+                <input class="form-check-input" name="deptsList" type="checkbox" value="@dept.Id">
+            }
+
+            <label class="form-check-label" for="flexCheckDefault">
+                @dept.Name
+            </label>
+        </div>
+    }
+    <br />
+    <input type="submit" value="@((action == "Add")?"Add":"Edit") Course" class="btn btn-success" />
+}
